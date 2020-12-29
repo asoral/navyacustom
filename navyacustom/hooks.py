@@ -33,8 +33,8 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
-# doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
+doctype_js = {"Task":"public/js/task.js"}
+# doctype_list_js = {"Task":"public/js/task.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
@@ -135,9 +135,9 @@ app_license = "MIT"
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
 # along with any modifications made in other Frappe apps
-# override_doctype_dashboards = {
-# 	"Task": "navyacustom.task.get_dashboard_data"
-# }
+override_doctype_dashboards = {
+	"Task": "navyacustom.task_dashboard.get_data"
+}
 
 # exempt linked doctypes from being automatically cancelled
 #
