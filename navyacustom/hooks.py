@@ -91,13 +91,11 @@ doctype_js = {"Task":"public/js/task.js"}
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	"Job Card": {
+		"after_insert": "navyacustom.custom_task.set_expected_time_in_job_card"
+	}
+}
 
 # Scheduled Tasks
 # ---------------
