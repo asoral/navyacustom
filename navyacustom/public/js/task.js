@@ -3,7 +3,7 @@ frappe.ui.form.on("Task", {
         if(!frm.doc.__islocal){
             frm.add_custom_button(__('Material Request'), function() {
 					frm.trigger('make_material_request');
-				}, __('Create'));
+				}).addClass('btn-primary');
         }
     },
     make_material_request: function(frm) {
