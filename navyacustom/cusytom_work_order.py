@@ -3,11 +3,32 @@
 from __future__ import unicode_literals
 import frappe
 from frappe import _
+from frappe.utils import flt
+from datetime import datetime
 
 @frappe.whitelist()
 def make_stock_entry(work_order_id, purpose, qty=None):
     print("---------override")
     work_order = frappe.get_doc("Work Order", work_order_id)
+
+    if work_order.pattern:
+        asset = frappe.get_doc('Asset', work_order.pattern)
+        if asset:
+            print("--------asset",asset.as_dict())
+            asset_movement = frappe.new_doc("Asset Movement")
+            asset_movement.purpose = "Issue"
+            asset_movement.transaction_date = datetime.now()
+            asset_movement.company = work_order.company
+            asset_movement.append("assets", {
+                'asset': asset.name,
+                'source_location': asset.location,
+                'to_employee': asset.custodian
+            })
+            asset_movement.insert(ignore_permissions=True)
+            asset_movement.flags.ignore_validate_update_after_submit = True
+            asset_movement.submit()
+            print("-------------------asset_movement",asset_movement)
+
     if not frappe.db.get_value("Warehouse", work_order.wip_warehouse, "is_group"):
         wip_warehouse = work_order.wip_warehouse
     else:
