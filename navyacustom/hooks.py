@@ -127,7 +127,7 @@ doc_events = {
 # ------------------------------
 #
 override_whitelisted_methods = {
-	"erpnext.manufacturing.doctype.work_order.work_order.make_stock_entry": "navyacustom.cusytom_work_order.make_stock_entry"
+	"erpnext.manufacturing.doctype.work_order.work_order.make_stock_entry": "navyacustom.custom_work_order.make_stock_entry"
 }
 #
 # each overriding function accepts a `data` argument;

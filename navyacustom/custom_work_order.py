@@ -10,34 +10,8 @@ from datetime import datetime
 def make_stock_entry(work_order_id, purpose, qty=None):
     work_order = frappe.get_doc("Work Order", work_order_id)
 
-    if work_order.pattern:
-        asset = frappe.get_doc('Asset', work_order.pattern)
-        if asset:
-            asset_movement = frappe.new_doc("Asset Movement")
-            asset_movement.transaction_date = datetime.now()
-            asset_movement.company = work_order.company
-            asset_movement.work_order = work_order.name
-            if purpose == "Material Transfer for Manufacture":
-                asset_movement.purpose = "Issue"
-                asset_movement.append("assets", {
-                    'asset': asset.name,
-                    'source_location': asset.location,
-                    'to_employee': asset.custodian
-                })
-            else:
-                if not work_order.location:
-                    frappe.throw("Select the Location for Asset Movement!")
-                asset_movement.purpose = "Receipt"
-                asset_movement.append("assets", {
-                    'asset': asset.name,
-                    'source_location': asset.location,
-                    'target_location': work_order.location,
-                    'from_employee': asset.custodian
-                })
-            asset_movement.insert(ignore_permissions=True)
-            asset_movement.flags.ignore_validate_update_after_submit = True
-            asset_movement.submit()
-
+    make_asset_movement(work_order, purpose)
+    make_employee_time_sheet(work_order)
     if not frappe.db.get_value("Warehouse", work_order.wip_warehouse, "is_group"):
         wip_warehouse = work_order.wip_warehouse
     else:
@@ -66,3 +40,38 @@ def make_stock_entry(work_order_id, purpose, qty=None):
     stock_entry.set_stock_entry_type()
     stock_entry.get_items()
     return stock_entry.as_dict()
+
+def make_asset_movement(work_order, purpose):
+    if work_order.pattern:
+        asset = frappe.get_doc('Asset', work_order.pattern)
+        if asset:
+            asset_movement = frappe.new_doc("Asset Movement")
+            asset_movement.transaction_date = datetime.now()
+            asset_movement.company = work_order.company
+            asset_movement.work_order = work_order.name
+            if purpose == "Material Transfer for Manufacture":
+                asset_movement.purpose = "Issue"
+                asset_movement.append("assets", {
+                    'asset': asset.name,
+                    'source_location': asset.location,
+                    'to_employee': asset.custodian
+                })
+            else:
+                if not work_order.location:
+                    frappe.throw("Select the Location for Asset Movement!")
+                asset_movement.purpose = "Receipt"
+                asset_movement.append("assets", {
+                    'asset': asset.name,
+                    'source_location': asset.location,
+                    'target_location': work_order.location,
+                    'from_employee': asset.custodian
+                })
+            asset_movement.insert(ignore_permissions=True)
+            asset_movement.flags.ignore_validate_update_after_submit = True
+            asset_movement.submit()
+
+def make_employee_time_sheet(work_order):
+    if work_order:
+        job_cards = frappe.get_list("Job Card", filters={"word_order": work_order.name})
+        for job_c in job_cards:
+            print("-------------job_c-",job_c)
