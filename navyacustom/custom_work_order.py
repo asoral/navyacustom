@@ -111,3 +111,4 @@ def make_employee_time_sheet(work_order):
                                 t_sheet.save(ignore_permissions=True)
                             except Exception as e:
                                 print("-------------e",e)
+                                pass
