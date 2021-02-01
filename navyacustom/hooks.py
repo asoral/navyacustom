@@ -84,7 +84,8 @@ doctype_js = {"Task":"public/js/task.js"}
 # Override standard doctype classes
 
 override_doctype_class = {
-	"Salary Slip": "navyacustom.custom_salary_slip.CustomSalarySlip"
+	"Salary Slip": "navyacustom.custom_salary_slip.CustomSalarySlip",
+	"Asset Movement": "navyacustom.custom_asset_movement.CustomAssetMovement"
 }
 
 # Document Events
