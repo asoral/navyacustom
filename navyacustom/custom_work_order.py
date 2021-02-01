@@ -9,8 +9,7 @@ from datetime import datetime
 @frappe.whitelist()
 def make_stock_entry(work_order_id, purpose, qty=None):
     work_order = frappe.get_doc("Work Order", work_order_id)
-
-    make_asset_movement(work_order, purpose)
+    # make_asset_movement(work_order, purpose)
     if purpose =='Manufacture':
         make_employee_time_sheet(work_order)
 
@@ -43,7 +42,9 @@ def make_stock_entry(work_order_id, purpose, qty=None):
     stock_entry.get_items()
     return stock_entry.as_dict()
 
+@frappe.whitelist()
 def make_asset_movement(work_order, purpose):
+    work_order = frappe.get_doc("Work Order",work_order)
     if work_order.pattern:
         asset = frappe.get_doc('Asset', work_order.pattern)
         if asset:
@@ -56,7 +57,7 @@ def make_asset_movement(work_order, purpose):
                 asset_movement.append("assets", {
                     'asset': asset.name,
                     'source_location': asset.location,
-                    'to_employee': asset.custodian
+                    'from_employee': asset.custodian
                 })
             else:
                 if not work_order.location:
@@ -68,9 +69,11 @@ def make_asset_movement(work_order, purpose):
                     'target_location': work_order.location,
                     'from_employee': asset.custodian
                 })
-            asset_movement.insert(ignore_permissions=True)
-            asset_movement.flags.ignore_validate_update_after_submit = True
-            asset_movement.submit()
+            # asset_movement.insert(ignore_permissions=True)
+            # asset_movement.flags.ignore_validate_update_after_submit = True
+            # asset_movement.submit()
+            return asset_movement.as_dict()
+        return False
 
 def make_employee_time_sheet(work_order):
     if work_order:
