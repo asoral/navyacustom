@@ -85,33 +85,36 @@ def make_employee_time_sheet(work_order):
             employee_job = frappe.db.sql("""select distinct employee from `tabJob Card`
                             where name in {0}""".format(tuple(job_list)), as_dict=True)
             for emp in employee_job:
-                job_dates = frappe.db.sql("""select distinct tc.employee,DATE(tct.from_time) as from_date from `tabJob Card` as tc
+                job_dates = frappe.db.sql("""select distinct tc.employee, tct.from_time,tct.to_time from `tabJob Card` as tc
                             inner join `tabJob Card Time Log` as tct on tct.parent = tc.name
-                            where tc.name in {0} and tc.employee = '{1}'
+                            where tc.name in {0} and tc.employee = '{1}' and tc.docstatus = 1 
+                            and tct.from_time is not null and tct.to_time is not null
                             order by tc.employee""".format(tuple(job_list), emp.employee), as_dict=True)
                 for j_date in job_dates:
-                    timesheet = frappe.get_list("Timesheet", filters={"employee": emp.employee,"start_date": j_date.from_date})
-                    if not timesheet:
-                        job_result = frappe.db.sql("""select distinct tc.employee,tct.from_time,tct.to_time from `tabJob Card` as tc
-                            inner join `tabJob Card Time Log` as tct on tct.parent = tc.name
-                            where tc.name in {0} and tc.employee = '{1}' and DATE(from_time) = '{2}'
-                            order by tc.employee,tct.from_time
-                            """.format(tuple(job_list), emp.employee, j_date.from_date), as_dict=True)
-                        if job_result:
-                            try:
-                                t_sheet = frappe.new_doc("Timesheet")
-                                t_sheet.employee = emp.employee
-                                t_sheet.start_date = j_date.from_date
-                                t_sheet.end_date = j_date.from_date
+                    timesheet = frappe.db.sql("""select tc.employee, tcd.from_time, tcd.to_time from `tabTimesheet Detail` as tcd
+                                inner join `tabTimesheet` as tc on tc.name = tcd.parent
+                                where tc.employee = %s 
+                                and tcd.from_time between %s and %s 
+                                or tcd.to_time between  %s and %s""", (j_date.employee, str(j_date.from_time),
+                                                                       str(j_date.to_time), str(j_date.from_time), str(j_date.to_time)))
 
-                                for job_line in job_result:
-                                    t_sheet.append("time_logs", {
-                                        "activity_type": "Execution",
-                                        "from_time": job_line.from_time,
-                                        "to_time": job_line.to_time,
-                                    })
-                                t_sheet.insert(ignore_permissions=True)
-                                t_sheet.save(ignore_permissions=True)
-                            except Exception as e:
-                                print("-------------e",e)
-                                pass
+                    if not timesheet:
+                        try:
+                            from_date = datetime.strptime((str(j_date.from_time)[:-2]+"00"), '%Y-%m-%d %H:%M:%S')
+                            to_date = datetime.strptime((str(j_date.to_time)[:-2]+"00"), '%Y-%m-%d %H:%M:%S')
+                            t_sheet = frappe.new_doc("Timesheet")
+                            t_sheet.employee = emp.employee
+                            date_diff = (to_date - from_date).seconds
+                            date_diff = date_diff / 3600
+                            t_sheet.append("time_logs", {
+                                "activity_type": "Execution",
+                                "from_time": from_date,
+                                "to_time": to_date,
+                                "hours": round(date_diff,3),
+                                "hrs": round(date_diff,3)
+                            })
+                            t_sheet.insert(ignore_permissions=True)
+                            t_sheet.validate()
+                        except Exception as e:
+                            print("-------------e",e)
+                            pass
