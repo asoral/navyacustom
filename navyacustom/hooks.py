@@ -97,7 +97,8 @@ override_doctype_class = {
 
 doc_events = {
 	"Job Card": {
-		"after_insert": "navyacustom.custom_task.set_expected_time_in_job_card"
+		"after_insert": "navyacustom.custom_task.set_expected_time_in_job_card",
+		"on_submit": "navyacustom.custom_job_card.make_employee_time_sheet"
 	}
 }
 
@@ -130,16 +131,17 @@ doc_events = {
 # Overriding Methods
 # ------------------------------
 #
-override_whitelisted_methods = {
-	"erpnext.manufacturing.doctype.work_order.work_order.make_stock_entry": "navyacustom.custom_work_order.make_stock_entry"
-}
+# override_whitelisted_methods = {
+# 	"erpnext.manufacturing.doctype.work_order.work_order.make_stock_entry": "navyacustom.custom_work_order.make_stock_entry"
+# }
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
 # along with any modifications made in other Frappe apps
 override_doctype_dashboards = {
 	"Task": "navyacustom.task_dashboard.get_data",
-	"Work Order": "navyacustom.word_order_dashboard.get_data"
+	"Work Order": "navyacustom.word_order_dashboard.get_data",
+	"Job Card": "navyacustom.job_card_dashboard.get_data"
 }
 
 # exempt linked doctypes from being automatically cancelled

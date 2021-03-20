@@ -9,10 +9,14 @@ def get_data(data):
 				'label': _('Transactions'),
 				'items': ['Stock Entry', 'Job Card', 'Pick List']
 			},
-            {
+			{
 				'label': _('Asset Movement'),
 				'items': ['Asset Movement']
-			}
+			},
+			{
+				'label': _('Timesheet'),
+				'items': ['Timesheet']
+			},
 		]
 	}
 
