@@ -36,8 +36,17 @@ app_include_css = "/assets/navyacustom/css/custom_css.css"
 doctype_js = {
 	"Task": "public/js/task.js",
 	"Work Order": "public/js/work_order.js",
+        #"Item":"public/js/image_view.js",
 }
-# doctype_list_js = {"Task":"public/js/task.js"}
+doctype_list_js = {
+
+        "Item":"public/navyacustom/js/image_view.js",
+        "Project":"public/navyacustom/js/image_view.js",
+        "Image View":"public/navyacustom/js/image_view.js"
+
+
+        }
+
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
@@ -60,6 +69,7 @@ doctype_js = {
 
 # Installation
 # ------------
+fixtures = ['Custom Field', 'Property Setter', 'Workflow', 'Workflow State', 'Workflow Action']
 
 # before_install = "navyacustom.install.before_install"
 # after_install = "navyacustom.install.after_install"

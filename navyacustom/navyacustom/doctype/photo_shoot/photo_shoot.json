@@ -1,0 +1,263 @@
+{
+ "actions": [],
+ "autoname": "field:item_code",
+ "creation": "2021-11-25 11:55:58.298846",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "restrict_external_transmittal",
+  "section_break_2",
+  "naming_series",
+  "silhouette",
+  "item_code",
+  "photo_shoot_name",
+  "is_customer_provided",
+  "type",
+  "customer",
+  "customer_order_number",
+  "category",
+  "attach_photo_shoot",
+  "photo_shoot_image",
+  "column_break_17",
+  "revision_no",
+  "sheet_no",
+  "project",
+  "project_name",
+  "task",
+  "item_details",
+  "amended_from",
+  "section_break_32",
+  "patterns",
+  "section_break_35",
+  "lft",
+  "rgt",
+  "is_group",
+  "old_parent",
+  "parent_photo_shoot",
+  "section_break_30"
+ ],
+ "fields": [
+  {
+   "default": "1",
+   "fieldname": "restrict_external_transmittal",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Restrict External Transmittal",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "Item Code",
+   "options": "Item",
+   "unique": 1
+  },
+  {
+   "fetch_from": "item_code.item_name",
+   "fieldname": "photo_shoot_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Photo shoot Name",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_customer_provided",
+   "fieldtype": "Check",
+   "label": "Is Customer Provided"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "Internal\nExternal\nTemplate\nConverted From External",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.type==\"External\"",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "depends_on": "eval:doc.type==\"External\"",
+   "fieldname": "customer_order_number",
+   "fieldtype": "Link",
+   "label": "Customer Order Number",
+   "options": "Sales Order"
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "label": "Category",
+   "options": "Graphic\nPrint Graphic\nSpec\nCustomize\nIllustration\nNesting",
+   "reqd": 1
+  },
+  {
+   "fieldname": "attach_photo_shoot",
+   "fieldtype": "Attach",
+   "hidden": 1,
+   "label": "Attach Photo Shoot"
+  },
+  {
+   "fieldname": "photo_shoot_image",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Photo Shoot Image"
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "revision_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Revision No"
+  },
+  {
+   "default": "1",
+   "fieldname": "sheet_no",
+   "fieldtype": "Int",
+   "label": "Sheet No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "label": "Project Name",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.project!=undefined",
+   "fieldname": "task",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Task",
+   "options": "Task"
+  },
+  {
+   "fetch_from": "task.subject",
+   "fieldname": "item_details",
+   "fieldtype": "Data",
+   "label": "Item Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Photo Shoot",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_32",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "patterns",
+   "fieldtype": "Table",
+   "label": "Photo Images",
+   "options": "Photo Shoot child"
+  },
+  {
+   "fieldname": "section_break_35",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "label": "Tree"
+  },
+  {
+   "fieldname": "silhouette",
+   "fieldtype": "Link",
+   "label": "Silhouette",
+   "options": "Silhouette"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "naming_series"
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Left",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Right",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Is Group"
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "label": "Old Parent",
+   "options": "Photo Shoot"
+  },
+  {
+   "fieldname": "parent_photo_shoot",
+   "fieldtype": "Link",
+   "label": "Parent Photo Shoot",
+   "options": "Photo Shoot"
+  },
+  {
+   "fieldname": "section_break_30",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "image_field": "photo_shoot_image",
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2021-11-27 17:43:12.744860",
+ "modified_by": "Administrator",
+ "module": "NavyaCustom",
+ "name": "Photo Shoot",
+ "nsm_parent_field": "parent_photo_shoot",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
