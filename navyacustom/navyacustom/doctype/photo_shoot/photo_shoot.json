@@ -1,6 +1,6 @@
 {
  "actions": [],
- "autoname": "field:item_code",
+ "autoname": "field:photo_shoot_name",
  "creation": "2021-11-25 11:55:58.298846",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -29,13 +29,12 @@
   "amended_from",
   "section_break_32",
   "patterns",
-  "section_break_35",
+  "section_break_30",
   "lft",
   "rgt",
   "is_group",
   "old_parent",
-  "parent_photo_shoot",
-  "section_break_30"
+  "parent_photo_shoot"
  ],
  "fields": [
   {
@@ -54,8 +53,7 @@
    "fieldname": "item_code",
    "fieldtype": "Link",
    "label": "Item Code",
-   "options": "Item",
-   "unique": 1
+   "options": "Item"
   },
   {
    "fetch_from": "item_code.item_name",
@@ -64,7 +62,8 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Photo shoot Name",
-   "read_only": 1
+   "read_only": 1,
+   "unique": 1
   },
   {
    "default": "0",
@@ -177,12 +176,6 @@
    "options": "Photo Shoot child"
   },
   {
-   "fieldname": "section_break_35",
-   "fieldtype": "Section Break",
-   "hidden": 1,
-   "label": "Tree"
-  },
-  {
    "fieldname": "silhouette",
    "fieldtype": "Link",
    "label": "Silhouette",
@@ -193,6 +186,10 @@
    "fieldtype": "Select",
    "hidden": 1,
    "label": "naming_series"
+  },
+  {
+   "fieldname": "section_break_30",
+   "fieldtype": "Section Break"
   },
   {
    "fieldname": "lft",
@@ -227,17 +224,14 @@
    "fieldtype": "Link",
    "label": "Parent Photo Shoot",
    "options": "Photo Shoot"
-  },
-  {
-   "fieldname": "section_break_30",
-   "fieldtype": "Section Break"
   }
  ],
  "image_field": "photo_shoot_image",
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
+ "is_tree": 1,
  "links": [],
- "modified": "2021-11-27 17:43:12.744860",
+ "modified": "2021-12-28 12:30:46.101090",
  "modified_by": "Administrator",
  "module": "NavyaCustom",
  "name": "Photo Shoot",

@@ -51,12 +51,12 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2021-01-27 12:40:54.214122",
+  "modified": "2022-03-01 16:43:38.663791",
   "name": "Payment Released",
   "parent": null,
   "parentfield": null,
   "parenttype": null,
-  "style": "Success",
+  "style": "",
   "workflow_state_name": "Payment Released"
  },
  {
@@ -202,6 +202,30 @@
   "parenttype": null,
   "style": "",
   "workflow_state_name": "Request to Internal Transfer"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2021-12-06 10:12:38.516321",
+  "name": "Authorise",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "style": "",
+  "workflow_state_name": "Authorise"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2021-12-06 10:14:45.127883",
+  "name": "Receive",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "style": "",
+  "workflow_state_name": "Receive"
  },
  {
   "docstatus": 0,

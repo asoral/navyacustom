@@ -69,7 +69,7 @@ doctype_list_js = {
 
 # Installation
 # ------------
-fixtures = ['Custom Field', 'Property Setter', 'Workflow', 'Workflow State', 'Workflow Action']
+fixtures = ['Custom Field', 'Property Setter', 'Workflow', 'Workflow State', 'Workflow Action','Print Format']
 
 # before_install = "navyacustom.install.before_install"
 # after_install = "navyacustom.install.after_install"
@@ -108,7 +108,7 @@ override_doctype_class = {
 doc_events = {
 	"Job Card": {
 		"after_insert": "navyacustom.custom_task.set_expected_time_in_job_card",
-		"on_submit": "navyacustom.custom_job_card.make_employee_time_sheet"
+		#"on_submit": "navyacustom.custom_job_card.make_employee_time_sheet"
 	}
 }
 
