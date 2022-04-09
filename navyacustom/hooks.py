@@ -69,7 +69,7 @@ doctype_list_js = {
 
 # Installation
 # ------------
-fixtures = ['Custom Field', 'Property Setter', 'Workflow', 'Workflow State', 'Workflow Action','Print Format']
+#fixtures = ['Custom Field', 'Property Setter', 'Workflow', 'Workflow State', 'Workflow Action','Print Format']
 
 # before_install = "navyacustom.install.before_install"
 # after_install = "navyacustom.install.after_install"
