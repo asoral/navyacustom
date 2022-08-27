@@ -28,13 +28,7 @@
   "item_details",
   "amended_from",
   "section_break_32",
-  "patterns",
-  "section_break_30",
-  "lft",
-  "rgt",
-  "is_group",
-  "old_parent",
-  "parent_photo_shoot"
+  "patterns"
  ],
  "fields": [
   {
@@ -186,71 +180,19 @@
    "fieldtype": "Select",
    "hidden": 1,
    "label": "naming_series"
-  },
-  {
-   "fieldname": "section_break_30",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "lft",
-   "fieldtype": "Int",
-   "hidden": 1,
-   "label": "Left",
-   "no_copy": 1,
-   "read_only": 1
-  },
-  {
-   "fieldname": "rgt",
-   "fieldtype": "Int",
-   "hidden": 1,
-   "label": "Right",
-   "no_copy": 1,
-   "read_only": 1
-  },
-  {
-   "default": "0",
-   "fieldname": "is_group",
-   "fieldtype": "Check",
-   "label": "Is Group"
-  },
-  {
-   "fieldname": "old_parent",
-   "fieldtype": "Link",
-   "label": "Old Parent",
-   "options": "Photo Shoot"
-  },
-  {
-   "fieldname": "parent_photo_shoot",
-   "fieldtype": "Link",
-   "label": "Parent Photo Shoot",
-   "options": "Photo Shoot"
   }
  ],
  "image_field": "photo_shoot_image",
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
- "is_tree": 1,
  "links": [],
- "modified": "2021-12-28 12:30:46.101090",
+ "modified": "2022-05-26 19:31:27.767459",
  "modified_by": "Administrator",
  "module": "NavyaCustom",
  "name": "Photo Shoot",
  "nsm_parent_field": "parent_photo_shoot",
  "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
+ "permissions": [],
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1

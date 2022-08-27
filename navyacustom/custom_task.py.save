@@ -35,12 +35,11 @@ def make_material_request(task, project=None, company=None):
 def set_expected_time_in_job_card(obj,method):
 	if obj.operation_id:
 		query = frappe.db.sql("""select * from `tabWork Order Operation` where name = %s limit 1""",(obj.operation_id), as_dict= True)
-		#cs_name=frappe.db.sql("""select customer_name from `tabbJob Card` where name="{}"  """.format(obj.work_order),as_dict=1)
+
 		if query:
 			if query[0].time_in_mins:
 				obj.expected_time = query[0].time_in_mins
 				expected_hours=int(query[0].time_in_mins)//60
 				obj.hours_=expected_hours
-				#if len(cs_name)!=0:
-				#	obj.customer_name=cs_name[0]['customer_name']
+				obj.customer_name=
 				obj.db_update()

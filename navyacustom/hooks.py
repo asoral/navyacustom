@@ -151,7 +151,7 @@ doc_events = {
 override_doctype_dashboards = {
 	"Task": "navyacustom.task_dashboard.get_data",
 	"Work Order": "navyacustom.word_order_dashboard.get_data",
-	"Job Card": "navyacustom.job_card_dashboard.get_data"
+	#"Job Card": "navyacustom.job_card_dashboard.get_data"
 }
 
 # exempt linked doctypes from being automatically cancelled
