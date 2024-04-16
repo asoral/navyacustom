@@ -97,7 +97,7 @@ doctype_list_js = {
 # Override standard doctype classes
 
 override_doctype_class = {
-	"Salary Slip": "navyacustom.custom_salary_slip.CustomSalarySlip",
+#	"Salary Slip": "navyacustom.custom_salary_slip.CustomSalarySlip",
 	"Asset Movement": "navyacustom.custom_asset_movement.CustomAssetMovement"
 }
 
@@ -107,7 +107,7 @@ override_doctype_class = {
 
 doc_events = {
 	"Job Card": {
-		"after_insert": "navyacustom.custom_task.set_expected_time_in_job_card",
+		#"after_insert": "navyacustom.custom_task.set_expected_time_in_job_card",
 		#"on_submit": "navyacustom.custom_job_card.make_employee_time_sheet"
 	}
 }
